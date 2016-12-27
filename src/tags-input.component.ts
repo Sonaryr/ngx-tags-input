@@ -24,13 +24,16 @@ const TAGS_INPUT_STYLE = `
 
     .tags-input__tag {
         margin-right: 5px;
+        padding-right: 0.3em;
     }
 
     .tags-input__tag-remove-btn {
         cursor: pointer;
         display: inline-block;
+        font-size: 12px;
         margin: 3px 0 0 3px;
         padding: 0;
+        padding-top: 2px;
         vertical-align: top;
     }
 
