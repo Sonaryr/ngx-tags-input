@@ -29,7 +29,7 @@ import { TagsInputModule } from 'ng2-tags-input/dist';
     BrowserModule,
 
     // Specify the library as an import
-    TagsInputModule
+    TagsInputModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -46,14 +46,21 @@ Once the library is imported, you can use it in your code
 ```
 
 ## API
-This section will be updated when the API is getting close to it's final form
+| Key     | Default | Remarks |
+|------   |------|------|
+| `ngModel` |N/A|The variable you whish to bind your tags to.|
+| `onTagsChanged ` |N/A|Will be called when a change is made to the tags `$event` will have the following structure: `{change: 'add', tag: {}}` where `change` can be `add` or `remove`|
+| `removeLastOnBackspace` |`false`|Boolean indicating that you can remove the last tag in the row when you press backspace in the input area when it is empty |
+|`canDeleteTags`|`true`| Boolean indicating wether tags can be removed or not |
+|`placeholder`|`''`| Placeholder text to display when not tags are present |
+|`options`|N/A| List of selectable options to add via the typeahead. Can be Array of strings, objects or an Observable for external matching process 
 
 ## Development
 
-To generate all `*.js`, `*.js.map` and `*.d.ts` files:
+To generate all the necessary files:
 
 ```bash
-$ npm run tsc
+$ npm run ngc
 ```
 
 To lint all `*.ts` files:
