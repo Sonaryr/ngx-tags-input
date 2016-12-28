@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef, Output, Input, EventEmitter } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { TypeaheadMatch } from 'ng2-bootstrap'
 
 const noop = () => {};
 
@@ -12,7 +13,23 @@ const TAGS_INPUT_TEMPLATE = `
                 <span class="sr-only">Close</span>
             </span>
         </span>
-        <input class="tags-input__input-field" type="text" placeholder="tags" #tagInput (keyup.enter)="addTag(tagInput)" (keydown.backspace)="removeLastTag(tagInput)">
+        <input
+            *ngIf="typeahead === null" 
+            class="tags-input__input-field" 
+            type="text" 
+            placeholder="{{ getPlaceHolder() }}"
+            name="tags"
+            (keyup.enter)="addTag(tagInput)" (keydown.backspace)="removeLastTag(tagInput)"
+            #tagInput />
+        <input
+            *ngIf="typeahead !== null" 
+            class="tags-input__input-field" 
+            type="text" 
+            placeholder="{{ getPlaceHolder() }}"
+            name="tags"
+            (keydown.backspace)="removeLastTag(tagInput)"
+            [(ngModel)]="selected" [typeahead]="typeahead" (typeaheadOnSelect)="typeaheadOnSelect($event)"
+            #tagInput />
     </div>
 `;
 
@@ -39,6 +56,7 @@ const TAGS_INPUT_STYLE = `
 
     .tags-input__input-field {
         border: none;
+        outline: none;
         width: 100%;
     }
 `;
@@ -56,15 +74,25 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class TagsInputComponent implements OnInit, ControlValueAccessor {
+    private selected:string = '';
     private tags: any[] = [];
     private onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
 
     @Input() removeLastOnBackspace: boolean = false;
     @Input() canDeleteTags: boolean = true;
+    @Input() placeholder: string = '';
+    @Input() typeahead: any[] = null;
     @Output() onTagsChanged = new EventEmitter();
 
     ngOnInit() {}
+
+    private getPlaceHolder(): string {
+        if(this.tags.length > 0){
+            return '';
+        }
+        return this.placeholder;
+    }
 
     private tagsChanged(type: string, tag: any): void {
         this.onChangeCallback(this.tags);
@@ -89,10 +117,14 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
             let tag = {
                 text: tagInput.value
             };
-            this.tags.push(tag);
-            this.tagsChanged('add', tag);
+            this.addPredefinedTag(tag);
         }
         tagInput.value = '';
+    }
+
+    private addPredefinedTag(tag: Object): void {
+        this.tags.push(tag);
+        this.tagsChanged('add', tag);
     }
 
     private removeTag(tagToRemove: any): void {
@@ -108,6 +140,14 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
             return false;
         }
         return this.canDeleteTags;
+    }
+
+    private typeaheadOnSelect(e:TypeaheadMatch):void {
+        console.log('Selected value: ', e.value);
+        this.addPredefinedTag({
+                text: e.value
+            });
+        this.selected = '';
     }
 
     writeValue(value: any) {
