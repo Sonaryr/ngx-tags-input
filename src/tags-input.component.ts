@@ -7,14 +7,14 @@ const noop = () => {};
 const TAGS_INPUT_TEMPLATE = `
     <div class="tags-input">
         <span class="tags-input__tag label label-primary" *ngFor="let tag of tags">
-            {{tag.text}}
+            {{tag.displayValue}}
             <span *ngIf="isDeleteable(tag)" role="button" class="tags-input__tag-remove-btn" (click)="removeTag(tag)" (touch)="removeTag(tag)">
                 <span aria-hidden="true">&times;</span>
                 <span class="sr-only">Close</span>
             </span>
         </span>
         <input
-            *ngIf="typeahead === null" 
+            *ngIf="options === null" 
             class="tags-input__input-field" 
             type="text" 
             placeholder="{{ getPlaceHolder() }}"
@@ -22,13 +22,16 @@ const TAGS_INPUT_TEMPLATE = `
             (keyup.enter)="addTag(tagInput)" (keydown.backspace)="removeLastTag(tagInput)"
             #tagInput />
         <input
-            *ngIf="typeahead !== null" 
+            *ngIf="options !== null" 
             class="tags-input__input-field" 
             type="text" 
             placeholder="{{ getPlaceHolder() }}"
             name="tags"
             (keydown.backspace)="removeLastTag(tagInput)"
-            [(ngModel)]="selected" [typeahead]="typeahead" (typeaheadOnSelect)="typeaheadOnSelect($event)"
+            [(ngModel)]="selected" 
+            [typeahead]="options"
+            [typeaheadOptionField]="'displayValue'"
+            (typeaheadOnSelect)="typeaheadOnSelect($event)"
             #tagInput />
     </div>
 `;
@@ -82,7 +85,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     @Input() removeLastOnBackspace: boolean = false;
     @Input() canDeleteTags: boolean = true;
     @Input() placeholder: string = '';
-    @Input() typeahead: any[] = null;
+    @Input() options: any = null;
     @Output() onTagsChanged = new EventEmitter();
 
     ngOnInit() {}
@@ -115,7 +118,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     private addTag(tagInput: HTMLInputElement): void {
         if (tagInput.value.trim() !== ''){
             let tag = {
-                text: tagInput.value
+                displayValue: tagInput.value
             };
             this.addPredefinedTag(tag);
         }
@@ -144,9 +147,13 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
 
     private typeaheadOnSelect(e:TypeaheadMatch):void {
         console.log('Selected value: ', e.value);
-        this.addPredefinedTag({
-                text: e.value
+        if(typeof e.item === 'string'){
+            this.addPredefinedTag({
+                displayValue: e.value
             });
+        }else {
+            this.addPredefinedTag(e.item);
+        }
         this.selected = '';
     }
 
