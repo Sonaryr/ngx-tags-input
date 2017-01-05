@@ -1,55 +1,55 @@
 {
-    "name": "ng2-tags-input",
-    "version": "0.2.0",
-    "scripts": {
-        "lint": "tslint src/**/*.ts",
-        "test": "ngc && karma start",
-        "postinstall": "typings install",
-        "prepublish": "ngc",
-        "ngc": "ngc",
-        "typings": "typings"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Sonaryr/ng2-tags-input"
-    },
-    "author": {
-        "name": "Maarten Schroeven",
-        "email": "maarten@sonaryr.be"
-    },
-    "keywords": [
-        "angular",
-        "angular2",
-        "bootstrap",
-        "bootstrap3",
-        "tags",
-        "input",
-        "tags-input"
-    ],
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Sonaryr/ng2-tags-input/issues"
-    },
-    "main": "./dist/index.js",
-    "typings": "./dist/index.d.ts",
-    "dependencies": {
-        "@angular/common": "^2.4.0",
-        "@angular/core": "^2.4.0",
-        "@angular/forms": "^2.4.0",
-        "ng2-bootstrap": "^1.1.16-10",
-        "rxjs": "^5.0.1"
-    },
-    "devDependencies": {
-        "@angular/compiler": "^2.4.0",
-        "@angular/compiler-cli": "^2.4.0",
-        "@angular/platform-server": "^2.4.0",
-        "codelyzer": "^0.0.20",
-        "tslint": "^3.15.1",
-        "typings": "^1.0.4",
-        "zone.js": "^0.7.2",
-        "typescript": "~2.0.10"
-    },
-    "engines": {
-        "node": ">=0.8.0"
-    }
+  "name": "ng2-tags-input",
+  "version": "0.3.0",
+  "scripts": {
+    "lint": "tslint src/**/*.ts",
+    "test": "ngc && karma start",
+    "postinstall": "typings install",
+    "prepublish": "ngc",
+    "ngc": "ngc",
+    "typings": "typings"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sonaryr/ng2-tags-input"
+  },
+  "author": {
+    "name": "Maarten Schroeven",
+    "email": "maarten@sonaryr.be"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "bootstrap",
+    "bootstrap3",
+    "tags",
+    "input",
+    "tags-input"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sonaryr/ng2-tags-input/issues"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "dependencies": {
+    "@angular/common": "^2.4.0",
+    "@angular/core": "^2.4.0",
+    "@angular/forms": "^2.4.0",
+    "ng2-bootstrap": "^1.1.16-10",
+    "rxjs": "^5.0.1"
+  },
+  "devDependencies": {
+    "@angular/compiler": "^2.4.0",
+    "@angular/compiler-cli": "^2.4.0",
+    "@angular/platform-server": "^2.4.0",
+    "codelyzer": "^0.0.20",
+    "tslint": "^3.15.1",
+    "typings": "^1.0.4",
+    "zone.js": "^0.7.2",
+    "typescript": "~2.0.10"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
 }
