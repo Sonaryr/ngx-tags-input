@@ -21,6 +21,7 @@ const TAGS_INPUT_TEMPLATE = `
             name="tags"
             (keyup.enter)="addTag(tagInput)" (keydown.backspace)="removeLastTag(tagInput)"
             [disabled]="maximumOfTagsReached()"
+            [hidden]="maximumOfTagsReached()"
             #tagInput />
         <input
             *ngIf="options !== null" 
@@ -34,6 +35,7 @@ const TAGS_INPUT_TEMPLATE = `
             [typeaheadOptionField]="'displayValue'"
             (typeaheadOnSelect)="typeaheadOnSelect($event)"
             [disabled]="maximumOfTagsReached()"
+            [hidden]="maximumOfTagsReached()"
             #tagInput />
     </div>
 `;
