@@ -20,6 +20,7 @@ const TAGS_INPUT_TEMPLATE = `
             placeholder="{{ getPlaceHolder() }}"
             name="tags"
             (keyup.enter)="addTag(tagInput)" (keydown.backspace)="removeLastTag(tagInput)"
+            [disabled]="maximumOfTagsReached()"
             #tagInput />
         <input
             *ngIf="options !== null" 
@@ -32,6 +33,7 @@ const TAGS_INPUT_TEMPLATE = `
             [typeahead]="options"
             [typeaheadOptionField]="'displayValue'"
             (typeaheadOnSelect)="typeaheadOnSelect($event)"
+            [disabled]="maximumOfTagsReached()"
             #tagInput />
     </div>
 `;
@@ -82,11 +84,13 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     private onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
 
+    @Input() maxTags: number;
     @Input() removeLastOnBackspace: boolean = false;
     @Input() canDeleteTags: boolean = true;
     @Input() placeholder: string = '';
     @Input() options: any = null;
     @Output() onTagsChanged = new EventEmitter();
+    @Output() onMaxTagsReached = new EventEmitter();
 
     ngOnInit() {}
 
@@ -103,6 +107,9 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
             change: type,
             tag: tag
         });
+        if(this.maximumOfTagsReached()){
+            this.onMaxTagsReached.emit();
+        }
     }
 
     private removeLastTag(tagInput: HTMLInputElement): void {
@@ -126,8 +133,10 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     }
 
     private addPredefinedTag(tag: Object): void {
-        this.tags.push(tag);
-        this.tagsChanged('add', tag);
+        if (!this.maximumOfTagsReached()){
+            this.tags.push(tag);
+            this.tagsChanged('add', tag);
+        }
     }
 
     private removeTag(tagToRemove: any): void {
@@ -138,6 +147,10 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
         this.tagsChanged('remove', tagToRemove);
     }
 
+    private maximumOfTagsReached(): boolean {
+        return typeof this.maxTags !== 'undefined' && this.tags.length>=this.maxTags;
+    }
+
     private isDeleteable(tag: any) {
         if(typeof tag.deleteable !== "undefined" && !tag.deleteable){
             return false;
@@ -146,7 +159,6 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     }
 
     private typeaheadOnSelect(e:TypeaheadMatch):void {
-        console.log('Selected value: ', e.value);
         if(typeof e.item === 'string'){
             this.addPredefinedTag({
                 displayValue: e.value
