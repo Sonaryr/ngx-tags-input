@@ -46,6 +46,11 @@ const TAGS_INPUT_STYLE = `
         white-space: nowrap;
     }
 
+    .tags-input {
+        align-items: center;
+        display: flex;
+    }
+
     .tags-input__tag {
         margin-right: 5px;
         padding-right: 0.3em;
@@ -55,14 +60,14 @@ const TAGS_INPUT_STYLE = `
         cursor: pointer;
         display: inline-block;
         font-size: 12px;
-        margin: 3px 0 0 3px;
+        margin: -3px 0 0 3px;
         padding: 0;
-        padding-top: 2px;
         vertical-align: top;
     }
 
     .tags-input__input-field {
         border: none;
+        flex-grow: 1;
         outline: none;
         width: 100%;
     }
