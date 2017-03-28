@@ -1,54 +1,54 @@
 {
-    "name": "ng2-tags-input",
-    "version": "0.3.2",
-    "scripts": {
-        "lint": "tslint src/**/*.ts",
-        "test": "ngc && karma start",
-        "prepublish": "ngc",
-        "ngc": "ngc",
-        "typings": "typings"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Sonaryr/ng2-tags-input"
-    },
-    "author": {
-        "name": "Maarten Schroeven",
-        "email": "maarten@sonaryr.be"
-    },
-    "keywords": [
-        "angular",
-        "angular2",
-        "bootstrap",
-        "bootstrap3",
-        "tags",
-        "input",
-        "tags-input"
-    ],
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/Sonaryr/ng2-tags-input/issues"
-    },
-    "main": "./dist/index.js",
-    "typings": "./dist/index.d.ts",
-    "dependencies": {
-        "@angular/common": "^4.0.0",
-        "@angular/core": "^4.0.0",
-        "@angular/forms": "^4.0.0",
-        "ng2-bootstrap": "2.0.0-rc.0",
-        "rxjs": "^5.1.0"
-    },
-    "devDependencies": {
-        "@angular/compiler": "^4.0.0",
-        "@angular/compiler-cli": "^4.0.0",
-        "@angular/platform-server": "^4.0.0",
-        "codelyzer": "^0.0.20",
-        "tslint": "^3.15.1",
-        "typings": "^1.0.4",
-        "zone.js": "^0.8.4",
-        "typescript": "~2.1.0"
-    },
-    "engines": {
-        "node": ">=0.8.0"
-    }
+  "name": "ng2-tags-input",
+  "version": "0.4.0",
+  "scripts": {
+    "lint": "tslint src/**/*.ts",
+    "test": "ngc && karma start",
+    "prepublish": "ngc",
+    "ngc": "ngc",
+    "typings": "typings"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sonaryr/ng2-tags-input"
+  },
+  "author": {
+    "name": "Maarten Schroeven",
+    "email": "maarten@sonaryr.be"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "bootstrap",
+    "bootstrap3",
+    "tags",
+    "input",
+    "tags-input"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sonaryr/ng2-tags-input/issues"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "dependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "ng2-bootstrap": "2.0.0-rc.0",
+    "rxjs": "^5.1.0"
+  },
+  "devDependencies": {
+    "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "^4.0.0",
+    "@angular/platform-server": "^4.0.0",
+    "codelyzer": "^0.0.20",
+    "tslint": "^3.15.1",
+    "typings": "^1.0.4",
+    "zone.js": "^0.8.4",
+    "typescript": "~2.1.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  }
 }
