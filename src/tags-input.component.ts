@@ -87,7 +87,7 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 })
 export class TagsInputComponent implements OnInit, ControlValueAccessor {
     private selected:string = '';
-    private tags: any[] = [];
+    public tags: any[] = [];
     private onTouchedCallback: () => void = noop;
     private onChangeCallback: (_: any) => void = noop;
 
