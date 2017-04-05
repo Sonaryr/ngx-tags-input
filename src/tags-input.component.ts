@@ -42,16 +42,19 @@ const TAGS_INPUT_TEMPLATE = `
 
 const TAGS_INPUT_STYLE = `
     :host {
-        overflow: scroll;
+        overflow: auto;
         white-space: nowrap;
     }
 
     .tags-input {
         align-items: center;
         display: flex;
+        flex-wrap: wrap;
     }
 
     .tags-input__tag {
+        display: inline-block;
+        margin-bottom: 2px;
         margin-right: 5px;
         padding-right: 0.3em;
     }
@@ -69,7 +72,6 @@ const TAGS_INPUT_STYLE = `
         border: none;
         flex-grow: 1;
         outline: none;
-        width: 100%;
     }
 `;
 
