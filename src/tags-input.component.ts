@@ -34,7 +34,7 @@ const TAGS_INPUT_TEMPLATE = `
             [typeahead]="options"
             [typeaheadOptionField]="optionsField"
             (typeaheadOnSelect)="typeaheadOnSelect($event)"
-            (typeaheadNoResults)="onNoOptionsMatch($event)"
+            (typeaheadNoResults)="typeaheadOnNoMatch($event)"
             [disabled]="maximumOfTagsReached()"
             [hidden]="maximumOfTagsReached()"
             #tagInput />
@@ -179,6 +179,12 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
             this.addPredefinedTag(e.item);
         }
         this.selected = '';
+    }
+
+    private typeaheadOnNoMatch(e:any):void {
+        if(typeof this.onNoOptionsMatch !== 'undefined'){
+            this.onNoOptionsMatch.emit()
+        }
     }
 
     writeValue(value: any) {
