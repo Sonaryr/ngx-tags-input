@@ -56,7 +56,7 @@ Once the library is imported, you can use it in your code
 | `placeholder` |`''`| Placeholder text to display when not tags are present |
 | `maxTags` |N/A| maximum number tags allowed to select |
 | `options` |N/A| List of selectable options to add via the typeahead. Can be Array of strings, objects or an Observable for external matching process 
-| `optionsField` |`'displayValue'`| Name of the property to show in the dropdown
+| `displayField` |`'displayValue'`| Name of the property to show in the dropdown
 | `onNoOptionsMatch` |N/A| Will be called when none of the given options match the entered text |
 
 ## Development

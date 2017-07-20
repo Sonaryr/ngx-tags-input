@@ -7,7 +7,7 @@ const noop = () => {};
 const TAGS_INPUT_TEMPLATE = `
     <div class="tags-input">
         <span class="tags-input__tag label label-primary" *ngFor="let tag of tags">
-            {{tag.displayValue}}
+            {{tag[displayField]}}
             <span *ngIf="isDeleteable(tag)" role="button" class="tags-input__tag-remove-btn" (click)="removeTag(tag)" (touch)="removeTag(tag)">
                 <span aria-hidden="true">&times;</span>
                 <span class="sr-only">Close</span>
@@ -32,7 +32,7 @@ const TAGS_INPUT_TEMPLATE = `
             (keydown.backspace)="removeLastTag(tagInput)"
             [(ngModel)]="selected" 
             [typeahead]="options"
-            [typeaheadOptionField]="optionsField"
+            [typeaheadOptionField]="displayField"
             (typeaheadOnSelect)="typeaheadOnSelect($event)"
             (typeaheadNoResults)="typeaheadOnNoMatch($event)"
             [disabled]="maximumOfTagsReached()"
@@ -99,7 +99,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     @Input() canDeleteTags: boolean = true;
     @Input() placeholder: string = '';
     @Input() options: any = null;
-    @Input() optionsField: string = 'displayValue';
+    @Input() displayField: string = 'displayValue';
     @Output() onTagsChanged = new EventEmitter();
     @Output() onMaxTagsReached = new EventEmitter();
     @Output() onNoOptionsMatch = new EventEmitter();
@@ -137,7 +137,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     private addTag(tagInput: HTMLInputElement): void {
         if (tagInput.value.trim() !== ''){
             let tag = {
-                displayValue: tagInput.value
+                [this.displayField]: tagInput.value
             };
             this.addPredefinedTag(tag);
         }
@@ -173,7 +173,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     private typeaheadOnSelect(e:TypeaheadMatch):void {
         if(typeof e.item === 'string'){
             this.addPredefinedTag({
-                displayValue: e.value
+                [this.displayField]: e.value
             });
         }else {
             this.addPredefinedTag(e.item);
