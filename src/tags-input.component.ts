@@ -32,8 +32,9 @@ const TAGS_INPUT_TEMPLATE = `
             (keydown.backspace)="removeLastTag(tagInput)"
             [(ngModel)]="selected" 
             [typeahead]="options"
-            [typeaheadOptionField]="'displayValue'"
+            [typeaheadOptionField]="optionsField"
             (typeaheadOnSelect)="typeaheadOnSelect($event)"
+            (typeaheadNoResults)="onNoOptionsMatch($event)"
             [disabled]="maximumOfTagsReached()"
             [hidden]="maximumOfTagsReached()"
             #tagInput />
@@ -98,8 +99,10 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     @Input() canDeleteTags: boolean = true;
     @Input() placeholder: string = '';
     @Input() options: any = null;
+    @Input() optionsField: string = 'displayValue';
     @Output() onTagsChanged = new EventEmitter();
     @Output() onMaxTagsReached = new EventEmitter();
+    @Output() onNoOptionsMatch = new EventEmitter();
 
     ngOnInit() {}
 
