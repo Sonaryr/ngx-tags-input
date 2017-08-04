@@ -1,6 +1,6 @@
 import { Component, OnInit, forwardRef, Output, Input, EventEmitter } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { TypeaheadMatch } from 'ng2-bootstrap'
+import { TypeaheadMatch } from 'ngx-bootstrap'
 
 const noop = () => {};
 
