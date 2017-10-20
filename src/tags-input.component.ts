@@ -183,7 +183,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
 
     private typeaheadOnNoMatch(e:any):void {
         if(typeof this.onNoOptionsMatch !== 'undefined'){
-            this.onNoOptionsMatch.emit()
+            this.onNoOptionsMatch.emit(e)
         }
     }
 
