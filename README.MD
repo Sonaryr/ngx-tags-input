@@ -1,4 +1,6 @@
 # ng2-tags-input
+## RENAMED TO ngx-tags-input
+You can find the new package [here](https://www.npmjs.com/package/ngx-tags-input). Also al further devolpment will be done there.
 ## Disclaimer
 This package is still under active development and might undergo heavy (breaking) changes. please be aware of this when using it.
 
@@ -7,7 +9,7 @@ This package is still under active development and might undergo heavy (breaking
 To install this library, run:
 
 ```bash
-$ npm install ng2-tags-input --save
+$ npm install ngx-tags-input --save
 ```
 
 ## Consuming the library
@@ -19,7 +21,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import the library
-import { TagsInputModule } from 'ng2-tags-input/dist';
+import { TagsInputModule } from 'ngx-tags-input/dist';
 
 @NgModule({
   declarations: [
