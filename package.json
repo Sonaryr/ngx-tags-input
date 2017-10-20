@@ -10,7 +10,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Sonaryr/ng2-tags-input"
+        "url": "https://github.com/Sonaryr/ngx-tags-input"
     },
     "author": {
         "name": "Maarten Schroeven",
