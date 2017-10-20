@@ -1,6 +1,6 @@
 {
   "name": "ng2-tags-input",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "scripts": {
     "lint": "tslint src/**/*.ts",
     "test": "ngc && karma start",
