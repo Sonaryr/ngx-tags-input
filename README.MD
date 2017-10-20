@@ -1,6 +1,4 @@
-# ng2-tags-input
-## RENAMED TO ngx-tags-input
-You can find the new package [here](https://www.npmjs.com/package/ngx-tags-input). Also al further devolpment will be done there.
+# ngx-tags-input
 ## Disclaimer
 This package is still under active development and might undergo heavy (breaking) changes. please be aware of this when using it.
 
