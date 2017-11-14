@@ -1,6 +1,4 @@
 # ngx-tags-input
-## Disclaimer
-This package is still under active development and might undergo heavy (breaking) changes. please be aware of this when using it.
 
 ## Installation
 
