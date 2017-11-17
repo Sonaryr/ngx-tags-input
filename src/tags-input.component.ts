@@ -35,6 +35,9 @@ const TAGS_INPUT_TEMPLATE = `
             [typeaheadOptionField]="displayField"
             (typeaheadOnSelect)="typeaheadOnSelect($event)"
             (typeaheadNoResults)="typeaheadOnNoMatch($event)"
+            [typeaheadMinLength]="minLengthBeforeOptions"
+            [typeaheadScrollable]="scrollableOptions"
+            [typeaheadOptionsInScrollableView]="scrollableOptionsInView"
             [disabled]="maximumOfTagsReached()"
             [hidden]="maximumOfTagsReached()"
             #tagInput />
@@ -100,6 +103,9 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     @Input() placeholder: string = '';
     @Input() options: any = null;
     @Input() displayField: string = 'displayValue';
+    @Input() minLengthBeforeOptions: number = 1;
+    @Input() scrollableOptions: boolean = false;
+    @Input() scrollableOptionsInView: number = 5;
     @Output() onTagsChanged = new EventEmitter();
     @Output() onMaxTagsReached = new EventEmitter();
     @Output() onNoOptionsMatch = new EventEmitter();
