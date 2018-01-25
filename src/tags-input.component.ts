@@ -113,7 +113,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     ngOnInit() {}
 
     private getPlaceHolder(): string {
-        if(this.tags.length > 0){
+        if(this.tags && this.tags.length > 0){
             return '';
         }
         return this.placeholder;
