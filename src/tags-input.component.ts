@@ -166,7 +166,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
     }
 
     private maximumOfTagsReached(): boolean {
-        return typeof this.maxTags !== 'undefined' && this.tags.length>=this.maxTags;
+        return typeof this.maxTags !== 'undefined' && this.tags && this.tags.length>=this.maxTags;
     }
 
     private isDeleteable(tag: any) {
@@ -195,7 +195,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
 
     writeValue(value: any) {
         if (value !== this.tags) {
-            this.tags = value;
+            this.tags = value == null || value == undefined ? [] : value;
         }
     }
 
