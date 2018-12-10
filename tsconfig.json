@@ -11,8 +11,8 @@
         "outDir": "./dist"
     },
     "files": [
-        "typings/index.d.ts",
-        "index.ts"
+        "src/lib/tags-input.module.ts",
+        "src/lib/tags-input.component.ts"
     ],
     "exclude": [
         "node_modules",
