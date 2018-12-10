@@ -1,12 +1,42 @@
 {
-  "name": "ngx-tags",
-  "version": "0.0.1",
-  "dependencies": {
-    "ngx-bootstrap": "3.1.2"
+  "name": "ngx-tags-input",
+  "version": "1.1.1",
+  "scripts": {
+    "lint": "tslint src/**/*.ts",
+    "test": "ngc && karma start",
+    "prepublish": "ngc",
+    "ngc": "ngc",
+    "typings": "typings"
   },
-  "peerDependencies": {
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sonaryr/ngx-tags-input"
+  },
+  "author": {
+    "name": "Maarten Schroeven",
+    "email": "maarten@sonaryr.be"
+  },
+  "keywords": [
+    "angular",
+    "angular6",
+    "angular7",
+    "ngx",
+    "bootstrap",
+    "bootstrap4",
+    "tags",
+    "input",
+    "tags-input"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sonaryr/ngx-tags-input/issues"
+  },
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "dependencies": {
     "@angular/common": "^7.1.0",
-    "@angular/core": "^7.1.0"
-    
+    "@angular/core": "^7.1.0",
+    "@angular/forms": "^7.1.0",
+    "ngx-bootstrap": "^3.1.2"
   }
 }
