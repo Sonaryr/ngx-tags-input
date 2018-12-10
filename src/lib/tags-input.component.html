@@ -1,0 +1,43 @@
+<div class="tags-input form-group">
+    <div class="form-control">
+        <span class="tags-input__tag badge" ngClass="badge-{{ type }}" *ngFor="let tag of tags">
+            {{tag[displayField]}}
+            <span *ngIf="isDeleteable(tag)" 
+                role="button" 
+                class="tags-input__tag-remove-btn" 
+                (click)="removeTag(tag)" 
+                (touch)="removeTag(tag)">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </span>
+        </span>
+        <input
+            *ngIf="options === null" 
+            class="tags-input__input-field" 
+            type="text" 
+            placeholder="{{ getPlaceHolder() }}"
+            name="tags"
+            (keyup.enter)="addTag(tagInput)" (keydown.backspace)="removeLastTag(tagInput)"
+            [disabled]="maximumOfTagsReached()"
+            [hidden]="maximumOfTagsReached()"
+            #tagInput />
+        <input
+            *ngIf="options !== null" 
+            class="tags-input__input-field" 
+            type="text" 
+            placeholder="{{ getPlaceHolder() }}"
+            name="tags"
+            (keydown.backspace)="removeLastTag(tagInput)"
+            [(ngModel)]="selected" 
+            [typeahead]="options"
+            [typeaheadOptionField]="displayField"
+            (typeaheadOnSelect)="typeaheadOnSelect($event)"
+            (typeaheadNoResults)="typeaheadOnNoMatch($event)"
+            [typeaheadMinLength]="minLengthBeforeOptions"
+            [typeaheadScrollable]="scrollableOptions"
+            [typeaheadOptionsInScrollableView]="scrollableOptionsInView"
+            [disabled]="maximumOfTagsReached()"
+            [hidden]="maximumOfTagsReached()"
+            #tagInput />
+    </div>
+</div>
