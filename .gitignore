@@ -3,10 +3,10 @@ node_modules/*
 npm-debug.log
 
 # TypeScript
-*.js
-*.map
-*.map.js
-*.d.ts
+#*.js
+#*.map
+#*.map.js
+#*.d.ts
 
 /compiled
 *.metadata.json
