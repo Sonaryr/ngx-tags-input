@@ -26,11 +26,14 @@
   },
   "main": "bundles/ngx-tags-input.umd.js",
   "typings": "ngx-tags-input.d.ts",
+  "dependencies": {
+    "ngx-bootstrap": "^3.1.2",
+    "tslib": "^1.9.0"
+  },
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0",
-    "@angular/forms": "^7.1.0",
-    "ngx-bootstrap": "^3.1.2"
+    "@angular/forms": "^7.1.0"
   },
   "module": "fesm5/ngx-tags-input.js",
   "es2015": "fesm2015/ngx-tags-input.js",
@@ -39,8 +42,5 @@
   "fesm5": "fesm5/ngx-tags-input.js",
   "fesm2015": "fesm2015/ngx-tags-input.js",
   "metadata": "ngx-tags-input.metadata.json",
-  "sideEffects": false,
-  "dependencies": {
-    "tslib": "^1.9.0"
-  }
+  "sideEffects": false
 }

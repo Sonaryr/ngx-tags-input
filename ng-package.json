@@ -3,5 +3,9 @@
   "dest": "./dist",
   "lib": {
     "entryFile": "src/public_api.ts"
-  }
+  },
+  "whitelistedNonPeerDependencies": [
+    "tslib",
+    "ngx-bootstrap"
+  ]
 }

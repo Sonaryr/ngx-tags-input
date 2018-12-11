@@ -33,10 +33,12 @@
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
+  "dependencies": {
+    "ngx-bootstrap": "^3.1.2"
+  },
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0",
-    "@angular/forms": "^7.1.0",
-    "ngx-bootstrap": "^3.1.2"
+    "@angular/forms": "^7.1.0"
   }
 }
