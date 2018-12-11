@@ -17,7 +17,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 // Import the library
-import { TagsInputModule } from 'ngx-tags-input/dist';
+import { TagsInputModule } from 'ngx-tags-input';
 
 @NgModule({
   declarations: [
