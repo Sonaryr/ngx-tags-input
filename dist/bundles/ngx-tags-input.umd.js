@@ -1,4 +1,4 @@
-(function (global, factory) { 
+(function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('ngx-bootstrap/typeahead')) :
     typeof define === 'function' && define.amd ? define('ngx-tags-input', ['exports', '@angular/core', '@angular/common', '@angular/forms', 'ngx-bootstrap/typeahead'], factory) :
     (factory((global['ngx-tags-input'] = {}),global.ng.core,global.ng.common,global.ng.forms,global.typeahead));
