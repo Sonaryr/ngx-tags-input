@@ -300,7 +300,7 @@ var TagsInputModule = /** @class */ (function () {
                     imports: [
                         CommonModule,
                         FormsModule,
-                        TypeaheadModule
+                        TypeaheadModule.forRoot()
                     ],
                     exports: [TagsInputComponent]
                 },] }

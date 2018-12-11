@@ -237,7 +237,7 @@ TagsInputModule.decorators = [
                 imports: [
                     CommonModule,
                     FormsModule,
-                    TypeaheadModule
+                    TypeaheadModule.forRoot()
                 ],
                 exports: [TagsInputComponent]
             },] }

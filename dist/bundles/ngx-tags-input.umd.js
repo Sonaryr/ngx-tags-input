@@ -301,7 +301,7 @@
                         imports: [
                             common.CommonModule,
                             forms.FormsModule,
-                            typeahead.TypeaheadModule
+                            typeahead.TypeaheadModule.forRoot()
                         ],
                         exports: [TagsInputComponent]
                     },] }

@@ -9,7 +9,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
   imports: [
     CommonModule,
     FormsModule,
-    TypeaheadModule
+    TypeaheadModule.forRoot ()
   ],
   exports: [TagsInputComponent]
 })
