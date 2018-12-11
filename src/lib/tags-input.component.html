@@ -29,8 +29,10 @@
             name="tags"
             (keydown.backspace)="removeLastTag(tagInput)"
             [(ngModel)]="selected" 
-           
+            [ngbTypeahead]="options"
+            [inputFormatter]="inputFormatter"
             [hidden]="maximumOfTagsReached()"
+            [disabled]="maximumOfTagsReached()"
             #tagInput />
     </div>
 </div>
@@ -42,5 +44,5 @@
             [typeaheadMinLength]="minLengthBeforeOptions"
             [typeaheadScrollable]="scrollableOptions"
             [typeaheadOptionsInScrollableView]="scrollableOptionsInView"
-            [disabled]="maximumOfTagsReached()"
+            
 -->

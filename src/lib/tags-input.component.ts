@@ -1,6 +1,6 @@
 import { Component, OnInit, forwardRef, Output, Input, EventEmitter} from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { TypeaheadMatch } from 'ngx-bootstrap'
+
 
 
 const noop = () => {};
@@ -31,8 +31,9 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
   @Input() options: any = null;
   @Input() displayField: string = 'displayValue';
   @Input() minLengthBeforeOptions: number = 1;
-  @Input() scrollableOptions: boolean = false;
-  @Input() scrollableOptionsInView: number = 5;
+  @Input() inputFormatter: Function;
+  //@Input() scrollableOptions: boolean = false;
+  //@Input() scrollableOptionsInView: number = 5;
   @Output() onTagsChanged = new EventEmitter();
   @Output() onMaxTagsReached = new EventEmitter();
   @Output() onNoOptionsMatch = new EventEmitter();
@@ -106,8 +107,8 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
       }
       return this.canDeleteTags;
   }
-
-   typeaheadOnSelect(e:TypeaheadMatch):void {
+/*
+   typeaheadOnSelect(e):void {
       if(typeof e.item === 'string'){
           this.addPredefinedTag({
               [this.displayField]: e.value
@@ -123,7 +124,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
           this.onNoOptionsMatch.emit(e)
       }
   }
-
+*/
   writeValue(value: any) {
       if (value !== this.tags) {
           this.tags = value;

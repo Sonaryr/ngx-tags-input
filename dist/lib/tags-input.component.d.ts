@@ -1,6 +1,5 @@
 import { OnInit, EventEmitter } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { TypeaheadMatch } from 'ngx-bootstrap';
 export declare class TagsInputComponent implements OnInit, ControlValueAccessor {
     selected: string;
     tags: any[];
@@ -14,8 +13,7 @@ export declare class TagsInputComponent implements OnInit, ControlValueAccessor 
     options: any;
     displayField: string;
     minLengthBeforeOptions: number;
-    scrollableOptions: boolean;
-    scrollableOptionsInView: number;
+    inputFormatter: Function;
     onTagsChanged: EventEmitter<{}>;
     onMaxTagsReached: EventEmitter<{}>;
     onNoOptionsMatch: EventEmitter<{}>;
@@ -29,8 +27,6 @@ export declare class TagsInputComponent implements OnInit, ControlValueAccessor 
     removeTag(tagToRemove: any): void;
     maximumOfTagsReached(): boolean;
     isDeleteable(tag: any): boolean;
-    typeaheadOnSelect(e: TypeaheadMatch): void;
-    typeaheadOnNoMatch(e: any): void;
     writeValue(value: any): void;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
