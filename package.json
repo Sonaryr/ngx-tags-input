@@ -34,7 +34,7 @@
   "main": "./dist/bundles/ngx-tags-input.umd.js",
   "typings": "./dist/index.d.ts",
   "dependencies": {
-    "ngx-bootstrap": "^3.1.2"
+    "@ng-bootstrap/ng-bootstrap": "^4.0.0"
   },
   "peerDependencies": {
     "@angular/common": "^7.1.0",

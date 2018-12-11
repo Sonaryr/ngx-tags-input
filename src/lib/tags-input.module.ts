@@ -1,15 +1,15 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { TagsInputComponent } from './tags-input.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import {NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { TagsInputComponent } from './tags-input.component';
 
 @NgModule({
   declarations: [TagsInputComponent],
   imports: [
     CommonModule,
     FormsModule,
-    TypeaheadModule.forRoot ()
+    NgbTypeaheadModule
   ],
   exports: [TagsInputComponent]
 })
