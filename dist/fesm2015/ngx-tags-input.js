@@ -1,7 +1,7 @@
 import { Injectable, NgModule, Component, forwardRef, Output, Input, EventEmitter, defineInjectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
-import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 
 /**
  * @fileoverview added by tsickle
@@ -44,8 +44,8 @@ class TagsInputComponent {
         this.options = null;
         this.displayField = 'displayValue';
         this.minLengthBeforeOptions = 1;
-        //@Input() scrollableOptions: boolean = false;
-        //@Input() scrollableOptionsInView: number = 5;
+        this.scrollableOptions = false;
+        this.scrollableOptionsInView = 5;
         this.onTagsChanged = new EventEmitter();
         this.onMaxTagsReached = new EventEmitter();
         this.onNoOptionsMatch = new EventEmitter();
@@ -96,12 +96,9 @@ class TagsInputComponent {
      * @return {?}
      */
     addTag(tagInput) {
-        console.log(tagInput);
         if (tagInput.value.trim() !== '') {
             /** @type {?} */
-            let tag = {
-                [this.displayField]: tagInput.value
-            };
+            let tag = { [this.displayField]: tagInput.value };
             this.addPredefinedTag(tag);
         }
         tagInput.value = '';
@@ -111,6 +108,8 @@ class TagsInputComponent {
      * @return {?}
      */
     addPredefinedTag(tag) {
+        if (!this.tags)
+            this.tags = [];
         if (!this.maximumOfTagsReached()) {
             this.tags.push(tag);
             this.tagsChanged('add', tag);
@@ -143,24 +142,28 @@ class TagsInputComponent {
         }
         return this.canDeleteTags;
     }
-    /*
-       typeaheadOnSelect(e):void {
-          if(typeof e.item === 'string'){
-              this.addPredefinedTag({
-                  [this.displayField]: e.value
-              });
-          }else {
-              this.addPredefinedTag(e.item);
-          }
-          this.selected = '';
-      }
-    
-       typeaheadOnNoMatch(e:any):void {
-          if(typeof this.onNoOptionsMatch !== 'undefined'){
-              this.onNoOptionsMatch.emit(e)
-          }
-      }
-    */
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    typeaheadOnSelect(e) {
+        if (typeof e.item === 'string') {
+            this.addPredefinedTag({ [this.displayField]: e.value });
+        }
+        else {
+            this.addPredefinedTag(e.item);
+        }
+        this.selected = '';
+    }
+    /**
+     * @param {?} e
+     * @return {?}
+     */
+    typeaheadOnNoMatch(e) {
+        if (typeof this.onNoOptionsMatch !== 'undefined') {
+            this.onNoOptionsMatch.emit(e);
+        }
+    }
     /**
      * @param {?} value
      * @return {?}
@@ -188,9 +191,9 @@ class TagsInputComponent {
 TagsInputComponent.decorators = [
     { type: Component, args: [{
                 selector: 'tags-input',
-                template: "<div class=\"tags-input form-group\">\n    <div class=\"form-control\">\n        <span class=\"tags-input__tag badge\" ngClass=\"badge-{{ type }}\" *ngFor=\"let tag of tags\">\n            {{tag[displayField]}}\n            <span *ngIf=\"isDeleteable(tag)\" \n                role=\"button\" \n                class=\"tags-input__tag-remove-btn\" \n                (click)=\"removeTag(tag)\" \n                (touch)=\"removeTag(tag)\">\n                <span aria-hidden=\"true\">&times;</span>\n                <span class=\"sr-only\">Close</span>\n            </span>\n        </span>\n        <input\n            *ngIf=\"options === null\" \n            class=\"tags-input__input-field\" \n            type=\"text\" \n            placeholder=\"{{ getPlaceHolder() }}\"\n            name=\"tags\"\n            (keyup.enter)=\"addTag(tagInput)\" (keydown.backspace)=\"removeLastTag(tagInput)\"\n            [disabled]=\"maximumOfTagsReached()\"\n            [hidden]=\"maximumOfTagsReached()\"\n            #tagInput />\n        <input\n            *ngIf=\"options !== null\" \n            class=\"tags-input__input-field\" \n            type=\"text\" \n            placeholder=\"{{ getPlaceHolder() }}\"\n            name=\"tags\"\n            (keydown.backspace)=\"removeLastTag(tagInput)\"\n            [(ngModel)]=\"selected\" \n            [ngbTypeahead]=\"options\"\n            [inputFormatter]=\"inputFormatter\"\n            [hidden]=\"maximumOfTagsReached()\"\n            [disabled]=\"maximumOfTagsReached()\"\n            #tagInput />\n    </div>\n</div>\n<!--\n     [typeahead]=\"options\"\n            [typeaheadOptionField]=\"displayField\"\n            (typeaheadOnSelect)=\"typeaheadOnSelect($event)\"\n            (typeaheadNoResults)=\"typeaheadOnNoMatch($event)\"\n            [typeaheadMinLength]=\"minLengthBeforeOptions\"\n            [typeaheadScrollable]=\"scrollableOptions\"\n            [typeaheadOptionsInScrollableView]=\"scrollableOptionsInView\"\n            \n-->",
+                template: "<div class=\"tags-input form-group\">\n    <div class=\"form-control\">\n        <span class=\"tags-input__tag badge\" ngClass=\"badge-{{ type }}\" *ngFor=\"let tag of tags\">\n            {{ tag[displayField]}}\n            <span *ngIf=\"isDeleteable(tag)\" \n                role=\"button\" \n                class=\"tags-input__tag-remove-btn\" \n                (click)=\"removeTag(tag)\" \n                (touch)=\"removeTag(tag)\">\n                <span aria-hidden=\"true\">&times;</span>\n                <span class=\"sr-only\">Close</span>\n            </span>\n        </span>\n        <input\n            *ngIf=\"options === null\" \n            class=\"tags-input__input-field\" \n            type=\"text\" \n            placeholder=\"{{ getPlaceHolder() }}\"\n            name=\"tags\"\n            (keyup.enter)=\"addTag(tagInput)\" (keydown.backspace)=\"removeLastTag(tagInput)\"\n            [disabled]=\"maximumOfTagsReached()\"\n            [hidden]=\"maximumOfTagsReached()\"\n            #tagInput />\n        <input\n            *ngIf=\"options !== null\" \n            class=\"tags-input__input-field\" \n            type=\"text\" \n            placeholder=\"{{ getPlaceHolder() }}\"\n            name=\"tags\"\n            (keydown.backspace)=\"removeLastTag(tagInput)\"\n            [(ngModel)]=\"selected\" \n            [hidden]=\"maximumOfTagsReached()\"\n            [disabled]=\"maximumOfTagsReached()\"\n            [typeahead]=\"options\"\n            [typeaheadOptionField]=\"displayField\"\n            (typeaheadOnSelect)=\"typeaheadOnSelect($event)\"\n            (typeaheadNoResults)=\"typeaheadOnNoMatch($event)\"\n            [typeaheadMinLength]=\"minLengthBeforeOptions\"\n            [typeaheadScrollable]=\"scrollableOptions\"\n            [typeaheadOptionsInScrollableView]=\"scrollableOptionsInView\"\n            #tagInput />\n    </div>\n</div>\n{{ displayField }}",
                 providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR],
-                styles: [":host{overflow:auto;white-space:nowrap}.tags-input{align-items:center;display:flex;flex-wrap:wrap}.tags-input__tag{display:inline-block;margin-bottom:2px;margin-right:5px;padding-right:.3em;font-size:110%;font-weight:initial;border:1px solid grey}.tags-input__tag-remove-btn{cursor:pointer;display:inline-block;font-size:12px;margin:-3px 0 0 3px;padding:0;vertical-align:top}.tags-input__input-field{border:none;flex-grow:1;outline:0}"]
+                styles: [":host{overflow:auto;white-space:nowrap}.tags-input{align-items:center;display:flex;flex-wrap:wrap}.tags-input__tag{display:inline-block;margin-right:5px;padding-right:.3em;font-size:110%;font-weight:initial;border:1px solid grey}.tags-input__tag-remove-btn{cursor:pointer;display:inline-block;font-size:12px;margin:-3px 0 0 3px;padding:0;vertical-align:top}.tags-input__input-field{border:1px solid transparent;flex-grow:1;outline:0}"]
             }] }
 ];
 /** @nocollapse */
@@ -204,7 +207,8 @@ TagsInputComponent.propDecorators = {
     options: [{ type: Input }],
     displayField: [{ type: Input }],
     minLengthBeforeOptions: [{ type: Input }],
-    inputFormatter: [{ type: Input }],
+    scrollableOptions: [{ type: Input }],
+    scrollableOptionsInView: [{ type: Input }],
     onTagsChanged: [{ type: Output }],
     onMaxTagsReached: [{ type: Output }],
     onNoOptionsMatch: [{ type: Output }]
@@ -231,7 +235,7 @@ TagsInputModule.decorators = [
                 imports: [
                     CommonModule,
                     FormsModule,
-                    NgbTypeaheadModule
+                    TypeaheadModule.forRoot()
                 ],
                 exports: [TagsInputComponent]
             },] }

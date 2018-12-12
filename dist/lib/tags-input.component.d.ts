@@ -13,7 +13,8 @@ export declare class TagsInputComponent implements OnInit, ControlValueAccessor 
     options: any;
     displayField: string;
     minLengthBeforeOptions: number;
-    inputFormatter: Function;
+    scrollableOptions: boolean;
+    scrollableOptionsInView: number;
     onTagsChanged: EventEmitter<{}>;
     onMaxTagsReached: EventEmitter<{}>;
     onNoOptionsMatch: EventEmitter<{}>;
@@ -27,6 +28,8 @@ export declare class TagsInputComponent implements OnInit, ControlValueAccessor 
     removeTag(tagToRemove: any): void;
     maximumOfTagsReached(): boolean;
     isDeleteable(tag: any): boolean;
+    typeaheadOnSelect(e: any): void;
+    typeaheadOnNoMatch(e: any): void;
     writeValue(value: any): void;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
