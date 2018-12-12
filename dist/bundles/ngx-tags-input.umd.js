@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('ngx-bootstrap/typeahead')) :
-    typeof define === 'function' && define.amd ? define('ngx-tags-input', ['exports', '@angular/core', '@angular/common', '@angular/forms', 'ngx-bootstrap/typeahead'], factory) :
-    (factory((global['ngx-tags-input'] = {}),global.ng.core,global.ng.common,global.ng.forms,global.typeahead));
-}(this, (function (exports,i0,common,forms,typeahead) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/forms'), require('ngx-bootstrap')) :
+    typeof define === 'function' && define.amd ? define('ngx-tags-input', ['exports', '@angular/core', '@angular/common', '@angular/forms', 'ngx-bootstrap'], factory) :
+    (factory((global['ngx-tags-input'] = {}),global.ng.core,global.ng.common,global.ng.forms,global.ngxBootstrap));
+}(this, (function (exports,i0,common,forms,ngxBootstrap) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -299,7 +299,7 @@
                         imports: [
                             common.CommonModule,
                             forms.FormsModule,
-                            typeahead.TypeaheadModule.forRoot()
+                            ngxBootstrap.TypeaheadModule.forRoot()
                         ],
                         exports: [TagsInputComponent]
                     },] }

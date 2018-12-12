@@ -1,7 +1,7 @@
 import { Injectable, NgModule, Component, forwardRef, Output, Input, EventEmitter, defineInjectable } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { TypeaheadModule } from 'ngx-bootstrap';
 
 /**
  * @fileoverview added by tsickle
