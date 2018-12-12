@@ -3,6 +3,8 @@ import { ControlValueAccessor } from '@angular/forms';
 export declare class TagsInputComponent implements OnInit, ControlValueAccessor {
     selected: string;
     tags: any[];
+    id1: string;
+    id2: string;
     onTouchedCallback: () => void;
     onChangeCallback: (_: any) => void;
     maxTags: number;

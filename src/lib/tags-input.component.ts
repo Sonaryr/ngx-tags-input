@@ -20,6 +20,8 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
 export class TagsInputComponent implements OnInit, ControlValueAccessor {
  selected:string = '';
   public tags: any[] = [];
+  id1 = Math.random ().toString (36).substring (7);
+  id2 = Math.random ().toString (36).substring (7);
    onTouchedCallback: () => void = noop;
    onChangeCallback: (_: any) => void = noop;
 
@@ -40,6 +42,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
   constructor() { }
 
   ngOnInit() {
+
   }
 
  
@@ -104,7 +107,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
       }
       return this.canDeleteTags;
   }
-
+  
    typeaheadOnSelect(e:any):void {
       if(typeof e.item === 'string'){
           this.addPredefinedTag({ [this.displayField]: e.value });

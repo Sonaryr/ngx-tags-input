@@ -13,6 +13,7 @@
         </span>
         <input
             *ngIf="options === null" 
+            [id]="id1"
             class="tags-input__input-field" 
             type="text" 
             placeholder="{{ getPlaceHolder() }}"
@@ -24,6 +25,7 @@
             #tagInput />
         <input
             *ngIf="options !== null" 
+            [id]="id2"
             class="tags-input__input-field" 
             type="text" 
             placeholder="{{ getPlaceHolder() }}"
@@ -43,4 +45,3 @@
             #tagInput />
     </div>
 </div>
-{{ displayField }}
