@@ -122,7 +122,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
 
   writeValue(value: any) {
       if (value !== this.tags) {
-          this.tags = value;
+          this.tags = value.map ((v:any) => ({ [this.displayField]: v }));
       }
   }
 

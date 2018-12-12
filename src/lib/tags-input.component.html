@@ -20,6 +20,7 @@
             (keyup.enter)="addTag(tagInput)" (keydown.backspace)="removeLastTag(tagInput)"
             [disabled]="maximumOfTagsReached()"
             [hidden]="maximumOfTagsReached()"
+            autocomplete="none"
             #tagInput />
         <input
             *ngIf="options !== null" 
@@ -38,6 +39,7 @@
             [typeaheadMinLength]="minLengthBeforeOptions"
             [typeaheadScrollable]="scrollableOptions"
             [typeaheadOptionsInScrollableView]="scrollableOptionsInView"
+            autocomplete="none"
             #tagInput />
     </div>
 </div>
