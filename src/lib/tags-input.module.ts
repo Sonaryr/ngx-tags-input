@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
+import { TypeaheadModule } from 'ngx-bootstrap';
 import { TagsInputComponent } from './tags-input.component';
 
 @NgModule({
