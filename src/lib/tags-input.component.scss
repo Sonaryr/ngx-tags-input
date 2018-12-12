@@ -12,7 +12,6 @@
 
 .tags-input__tag {
     display: inline-block;
-    margin-bottom: 2px;
     margin-right: 5px;
     padding-right: 0.3em;
     font-size:110%;
@@ -30,7 +29,7 @@
 }
 
 .tags-input__input-field {
-    border: none;
+    border: 1px solid transparent;
     flex-grow: 1;
     outline: none;
 }
