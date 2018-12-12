@@ -6,6 +6,6 @@
   },
   "whitelistedNonPeerDependencies": [
     "tslib",
-    "@ng-bootstrap/ng-bootstrap"
+    "ngx-bootstrap"
   ]
 }

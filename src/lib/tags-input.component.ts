@@ -18,7 +18,7 @@ const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
   providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class TagsInputComponent implements OnInit, ControlValueAccessor {
-   selected:string = '';
+ selected:string = '';
   public tags: any[] = [];
    onTouchedCallback: () => void = noop;
    onChangeCallback: (_: any) => void = noop;
@@ -31,9 +31,8 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
   @Input() options: any = null;
   @Input() displayField: string = 'displayValue';
   @Input() minLengthBeforeOptions: number = 1;
-  @Input() inputFormatter: Function;
-  //@Input() scrollableOptions: boolean = false;
-  //@Input() scrollableOptionsInView: number = 5;
+  @Input() scrollableOptions: boolean = false;
+  @Input() scrollableOptionsInView: number = 5;
   @Output() onTagsChanged = new EventEmitter();
   @Output() onMaxTagsReached = new EventEmitter();
   @Output() onNoOptionsMatch = new EventEmitter();
@@ -43,14 +42,13 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
   ngOnInit() {
   }
 
-
+ 
    getPlaceHolder(): string {
     if(this.tags && this.tags.length > 0){
         return '';
     }
     return this.placeholder;
 }
-
    tagsChanged(type: string, tag: any): void {
       this.onChangeCallback(this.tags);
       this.onTagsChanged.emit({
@@ -74,15 +72,14 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
 
    addTag(tagInput: HTMLInputElement): void {
       if (tagInput.value.trim() !== ''){
-          let tag = {
-              [this.displayField]: tagInput.value
-          };
+          let tag =  { [this.displayField]: tagInput.value };
           this.addPredefinedTag(tag);
       }
       tagInput.value = '';
   }
 
    addPredefinedTag(tag: Object): void {
+      if (!this.tags) this.tags = [];
       if (!this.maximumOfTagsReached()){
           this.tags.push(tag);
           this.tagsChanged('add', tag);
@@ -107,12 +104,10 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
       }
       return this.canDeleteTags;
   }
-/*
-   typeaheadOnSelect(e):void {
+
+   typeaheadOnSelect(e:any):void {
       if(typeof e.item === 'string'){
-          this.addPredefinedTag({
-              [this.displayField]: e.value
-          });
+          this.addPredefinedTag({ [this.displayField]: e.value });
       }else {
           this.addPredefinedTag(e.item);
       }
@@ -124,7 +119,7 @@ export class TagsInputComponent implements OnInit, ControlValueAccessor {
           this.onNoOptionsMatch.emit(e)
       }
   }
-*/
+
   writeValue(value: any) {
       if (value !== this.tags) {
           this.tags = value;

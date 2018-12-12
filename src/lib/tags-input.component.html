@@ -1,7 +1,7 @@
 <div class="tags-input form-group">
     <div class="form-control">
         <span class="tags-input__tag badge" ngClass="badge-{{ type }}" *ngFor="let tag of tags">
-            {{tag[displayField]}}
+            {{ tag[displayField]}}
             <span *ngIf="isDeleteable(tag)" 
                 role="button" 
                 class="tags-input__tag-remove-btn" 
@@ -29,20 +29,16 @@
             name="tags"
             (keydown.backspace)="removeLastTag(tagInput)"
             [(ngModel)]="selected" 
-            [ngbTypeahead]="options"
-            [inputFormatter]="inputFormatter"
             [hidden]="maximumOfTagsReached()"
             [disabled]="maximumOfTagsReached()"
-            #tagInput />
-    </div>
-</div>
-<!--
-     [typeahead]="options"
+            [typeahead]="options"
             [typeaheadOptionField]="displayField"
             (typeaheadOnSelect)="typeaheadOnSelect($event)"
             (typeaheadNoResults)="typeaheadOnNoMatch($event)"
             [typeaheadMinLength]="minLengthBeforeOptions"
             [typeaheadScrollable]="scrollableOptions"
             [typeaheadOptionsInScrollableView]="scrollableOptionsInView"
-            
--->
+            #tagInput />
+    </div>
+</div>
+{{ displayField }}
