@@ -65,14 +65,10 @@ Once the library is imported, you can use it in your code
 To generate all the necessary files:
 
 ```bash
-$ npm run ngc
+$ ng build 
 ```
 
-To lint all `*.ts` files:
 
-```bash
-$ npm run lint
-```
 
 ## License
 
