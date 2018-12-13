@@ -171,7 +171,7 @@ class TagsInputComponent {
      * @return {?}
      */
     writeValue(value) {
-        if (value !== this.tags) {
+        if (value && value !== this.tags) {
             this.tags = value.map((v) => ({ [this.displayField]: v }));
         }
     }

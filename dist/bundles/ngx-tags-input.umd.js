@@ -223,7 +223,7 @@
          */
             function (value) {
                 var _this = this;
-                if (value !== this.tags) {
+                if (value && value !== this.tags) {
                     this.tags = value.map(function (v) {
                         var _a;
                         return (_a = {}, _a[_this.displayField] = v, _a);
