@@ -25,6 +25,7 @@
     "url": "https://github.com/Sonaryr/ngx-tags-input/issues"
   },
   "typings": "ngx-tags-input.d.ts",
+  "main": "bundles/ngx-tags-input.umd.js",
   "dependencies": {
     "ngx-bootstrap": "^3.1.3",
     "tslib": "^1.9.0"
@@ -34,7 +35,6 @@
     "@angular/core": "^7.1.0",
     "@angular/forms": "^7.1.0"
   },
-  "main": "bundles/ngx-tags-input.umd.js",
   "module": "fesm5/ngx-tags-input.js",
   "es2015": "fesm2015/ngx-tags-input.js",
   "esm5": "esm5/ngx-tags-input.js",

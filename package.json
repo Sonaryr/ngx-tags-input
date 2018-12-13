@@ -32,6 +32,7 @@
     "url": "https://github.com/Sonaryr/ngx-tags-input/issues"
   },
   "typings": "./dist/index.d.ts",
+  "main": "./dist/bundles/ngx-tags-input.umd.js",
   "dependencies": {
     "ngx-bootstrap": "^3.1.3"
   },
