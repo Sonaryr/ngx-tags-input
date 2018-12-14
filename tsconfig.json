@@ -19,6 +19,10 @@
         "dist"
     ],
     "angularCompilerOptions": {
-        "genDir": "compiled"
+        "genDir": "compiled",
+        "skipTemplateCodegen": true,
+        "skipMetadataEmit": false,
+        "strictMetadataEmit": true,
+        "annotationsAs": "decorators"
     }
 }
