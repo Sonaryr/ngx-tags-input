@@ -1,3 +1,6 @@
+# LOOKING FOR NEW NAINTAINER
+Since this is clearly used by others and I don't have the time to maintain it I am looking for new maintainers
+
 # ngx-tags-input
 
 ## Installation
