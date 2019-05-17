@@ -1,0 +1,45 @@
+<div class="container">
+  <h1>Demo application for ngx-tags-input</h1>
+  <h2>Parameters</h2>
+  <h3>ngModel</h3>
+  <p>Bind the previous tags or add them to the variable (note: each tag will need a property that is is defined in the <strong>displayField</strong> parameter).</p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="ngModelParam"></ngx-tags-input>
+  <h3>canDeleteTags</h3>
+  <p>When <strong>false</strong> it will be disallowd to remove tags (usefull for display purposes), including newly created tags. Defaults to <strong>true</strong></p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="canDeleteTagsParam" [canDeleteTags]="false"></ngx-tags-input>
+  <h3>canAddTags</h3>
+  <p>When <strong>false</strong> it will be disallowd to add tags (usefull for display purposes). Defaults to <strong>true</strong></p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="canAddTagsParam" [canAddTags]="false"></ngx-tags-input>
+  <h3>removeLastOnBackspace</h3>
+  <p>When <strong>true</strong> it will allow to remove the last tag using the backspace when there is no text in the input area. Defaults to <strong>false</strong></p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="removeLastOnBackspaceParam" [removeLastOnBackspace]="true"></ngx-tags-input>
+  <h3>placeholder</h3>
+  <p>Shows the given text when no tags are present</p>
+  <ngx-tags-input class="form-control input-lg" placeholder="Please type here..."></ngx-tags-input>
+  <h3>maxTags</h3>
+  <p>Limits the number of tags it can contain</p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="maxTagsParams" [maxTags]="4" placeholder="Only 4 tags are allowed..."></ngx-tags-input>
+  <h3>options</h3>
+  <p>Predefined list of allowed items (each must contain atleast the property defined in the <strong>displayField</strong> parameter). This can be an <strong>Array</strong> or an <strong>Observable</strong></p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="optionsParam1" [options]="optionsArray"></ngx-tags-input>
+  <h3>minLengthBeforeOptions (only with <strong>options</strong> parameter)</h3>
+  <p>The minimum length a user needs to type before matching starts. defaults to <strong>1</strong></p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="optionsParam2" [options]="optionsArray" [minLengthBeforeOptions]="3" placeholder="will only match when 3 characters are typed"></ngx-tags-input>
+  <h3>scrollableOptions & scrollableOptionsInView (only with <strong>options</strong> parameter)</h3>
+  <p>Enables and set the ability to scroll in the dropdown with options and how much options are available in view. defaults to <strong>false</strong> and <strong>5</strong></p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="optionsParam3" [options]="optionsArray" [scrollableOptions]="true" [scrollableOptionsInView]="2"></ngx-tags-input>
+
+  <h2>Events</h2>
+  <h3>onTagsChanged</h3>
+  <p>Will emit when tags are added or removed. The event will have a <strong>change</strong>('add' or 'remove') and a <strong>tag</strong> property.</p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="onTagsChangedParam" (onTagsChanged)="onTagsChangedEventHandler($event)"></ngx-tags-input>
+  <p>event (JSON stringified): {{onTagsChangedOutput}}</p>
+  <h3>onMaxTagsReached</h3>
+  <p>Will emit when no more tags can be added</p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="onMaxTagsReachedParam" [maxTags]="2" placeholder="only 2 allowed" (onMaxTagsReached)="onMaxTagsReachedEventHandler()"></ngx-tags-input>
+  <p>{{onMaxTagsReachedFired ? 'event fired!': 'event not yet fired!'}}</p>
+  <h3>onNoOptionsMatch</h3>
+  <p>Will emit on every keystroke, the event will be <strong>true</strong> when no option can be matched</p>
+  <ngx-tags-input class="form-control input-lg" [(ngModel)]="onNoOptionsMatchParam" [options]="optionsArray" (onNoOptionsMatch)="onNoOptionsMatchEventHandler($event)"></ngx-tags-input>
+  <p>can be matched: {{!onNoOptionsMatchOutput}}</p>
+</div>
