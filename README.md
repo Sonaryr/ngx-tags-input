@@ -39,7 +39,7 @@ Once the library is imported, you can use it in your code
 
 ```xml
 ...
-<tags-input class="form-control input-lg" (onTagsChanged)="onTagsChanged($event)" [removeLastOnBackspace]="removeLastOnBackspace" [(ngModel)]="tags" name="tags"></tags-input>
+<ngx-tags-input class="form-control input-lg" (onTagsChanged)="onTagsChanged($event)" [removeLastOnBackspace]="removeLastOnBackspace" [(ngModel)]="tags" name="tags"></ngx-tags-input>
 ...
 ```
 
