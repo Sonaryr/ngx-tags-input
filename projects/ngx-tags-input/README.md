@@ -49,6 +49,7 @@ Once the library is imported, you can use it in your code
 | `ngModel` |N/A|The variable you whish to bind your tags to. Must be an Array|
 | `removeLastOnBackspace` |`false`|Boolean indicating that you can remove the last tag in the row when you press backspace in the input area when it is empty |
 | `canDeleteTags` |`true`| Boolean indicating wether tags can be removed or not |
+| `canAddTags` |`true`| Boolean indicating wether tags can be added or not |
 | `placeholder` |`''`| Placeholder text to display when not tags are present |
 | `maxTags` |N/A| maximum number tags allowed to select |
 | `options` |N/A| List of selectable options to add via the typeahead. Can be Array of strings, objects or an Observable for external matching process |
