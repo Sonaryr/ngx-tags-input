@@ -6,5 +6,28 @@
     "@angular/core": "^7.2.0",
     "@angular/forms": "^7.2.0",
     "ngx-bootstrap": "^4.0.0"
-  }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sonaryr/ngx-tags-input"
+  },
+  "bugs": {
+    "url": "https://github.com/Sonaryr/ngx-tags-input/issues"
+  },
+  "author": {
+    "name": "Maarten Schroeven",
+    "email": "maarten@sonaryr.be"
+  },
+  "keywords": [
+    "angular",
+    "angular7",
+    "ngx",
+    "bootstrap",
+    "bootstrap3",
+    "bootstrap4",
+    "tags",
+    "input",
+    "tags-input"
+  ] 
 }

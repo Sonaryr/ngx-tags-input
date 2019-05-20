@@ -47,5 +47,28 @@
     "tslib": "^1.9.0",
     "tslint": "~5.11.0",
     "typescript": "~3.2.2"
-  }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sonaryr/ngx-tags-input"
+  },
+  "bugs": {
+    "url": "https://github.com/Sonaryr/ngx-tags-input/issues"
+  },
+  "author": {
+    "name": "Maarten Schroeven",
+    "email": "maarten@sonaryr.be"
+  },
+  "keywords": [
+    "angular",
+    "angular7",
+    "ngx",
+    "bootstrap",
+    "bootstrap3",
+    "bootstrap4",
+    "tags",
+    "input",
+    "tags-input"
+  ] 
 }
