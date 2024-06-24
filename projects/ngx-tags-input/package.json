@@ -19,6 +19,9 @@
     "name": "Maarten Schroeven",
     "email": "maarten@sonaryr.be"
   },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "keywords": [
     "angular",
     "angular7",

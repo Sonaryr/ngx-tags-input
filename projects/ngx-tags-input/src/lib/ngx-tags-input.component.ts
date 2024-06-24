@@ -2,7 +2,7 @@ import { Component, forwardRef, Input, Output, EventEmitter } from '@angular/cor
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/public_api';
 
-const noop = () => {};
+const noop = () => { };
 
 const TAGS_INPUT_TEMPLATE = `
     <div class="tags-input">
@@ -19,6 +19,7 @@ const TAGS_INPUT_TEMPLATE = `
             type="text" 
             [placeholder]="getPlaceholder()"
             name="tags"
+            (keyup)="onKeyUp($event, tagInput)"
             (keyup.enter)="addTag(tagInput)" (keydown.backspace)="removeLastTag(tagInput)"
             [disabled]="!canAddTags || maximumOfTagsReached()"
             [hidden]="!canAddTags || maximumOfTagsReached()"
@@ -83,134 +84,142 @@ const TAGS_INPUT_STYLE = `
 `;
 
 const CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR: any = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => NgxTagsInputComponent),
-  multi: true
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => NgxTagsInputComponent),
+    multi: true
 };
 
 export interface TagsChangedEvent {
-  change: string,
-  tag: any
+    change: string,
+    tag: any
 }
 
 @Component({
-  selector: 'ngx-tags-input',
-  template: TAGS_INPUT_TEMPLATE,
-  styles: [TAGS_INPUT_STYLE],
-  providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
+    selector: 'ngx-tags-input',
+    template: TAGS_INPUT_TEMPLATE,
+    styles: [TAGS_INPUT_STYLE],
+    providers: [CUSTOM_INPUT_CONTROL_VALUE_ACCESSOR]
 })
 export class NgxTagsInputComponent implements ControlValueAccessor {
-  selected:string = '';
-  public tags: Array<any> = [];
-  private onTouchedCallback: () => void = noop;
-  private onChangeCallback: (_: any) => void = noop;
+    selected: string = '';
+    public tags: Array<any> = [];
+    private onTouchedCallback: () => void = noop;
+    private onChangeCallback: (_: any) => void = noop;
 
-  @Input() maxTags: number;
-  @Input() removeLastOnBackspace: boolean = false;
-  @Input() canDeleteTags: boolean = true;
-  @Input() canAddTags: boolean = true;
-  @Input() placeholder: string = '';
-  @Input() options: any = null;
-  @Input() displayField: string = 'displayValue';
-  @Input() minLengthBeforeOptions: number = 1;
-  @Input() scrollableOptions: boolean = false;
-  @Input() scrollableOptionsInView: number = 5;
-  @Output() onTagsChanged: EventEmitter<TagsChangedEvent> = new EventEmitter();
-  @Output() onMaxTagsReached: EventEmitter<void> = new EventEmitter();
-  @Output() onNoOptionsMatch: EventEmitter<boolean> = new EventEmitter();
+    @Input() maxTags: number;
+    @Input() addTagOnSpace: boolean = true;
+    @Input() addTagOnSemicolon: boolean = false;
+    @Input() removeLastOnBackspace: boolean = false;
+    @Input() canDeleteTags: boolean = true;
+    @Input() canAddTags: boolean = true;
+    @Input() placeholder: string = '';
+    @Input() options: any = null;
+    @Input() displayField: string = 'displayValue';
+    @Input() minLengthBeforeOptions: number = 1;
+    @Input() scrollableOptions: boolean = false;
+    @Input() scrollableOptionsInView: number = 5;
+    @Output() onTagsChanged: EventEmitter<TagsChangedEvent> = new EventEmitter();
+    @Output() onMaxTagsReached: EventEmitter<void> = new EventEmitter();
+    @Output() onNoOptionsMatch: EventEmitter<boolean> = new EventEmitter();
 
-  getPlaceholder(): string {
-    if(this.tags && this.tags.length > 0){
-        return '';
+    getPlaceholder(): string {
+        if (this.tags && this.tags.length > 0) {
+            return '';
+        }
+        return this.placeholder;
     }
-    return this.placeholder;
-  }
 
-  private tagsChanged(type: string, tag: any): void {
-      this.onChangeCallback(this.tags);
-      this.onTagsChanged.emit({
-          change: type,
-          tag: tag
-      });
-      if(this.maximumOfTagsReached()){
-          this.onMaxTagsReached.emit();
-      }
-  }
+    onKeyUp(event, tagInput) { // without type info
+        if ((this.addTagOnSemicolon && event.keyCode == 186) || (this.addTagOnSpace && event.keyCode == 32) && tagInput.value) {
+            this.addTag(tagInput);
+        }
+    }
 
-  removeLastTag(tagInput: HTMLInputElement): void {
-      if(!this.removeLastOnBackspace || !this.tags.length) {
-          return;
-      }
+    private tagsChanged(type: string, tag: any): void {
+        this.onChangeCallback(this.tags);
+        this.onTagsChanged.emit({
+            change: type,
+            tag: tag
+        });
+        if (this.maximumOfTagsReached()) {
+            this.onMaxTagsReached.emit();
+        }
+    }
 
-      if (tagInput.value === ''){
-          this.removeTag(this.tags[this.tags.length-1]);
-      }
-  }
+    removeLastTag(tagInput: HTMLInputElement): void {
+        if (!this.removeLastOnBackspace || !this.tags.length) {
+            return;
+        }
 
-  addTag(tagInput: HTMLInputElement): void {
-      if (tagInput.value.trim() !== ''){
-          let tag = {
-              [this.displayField]: tagInput.value
-          };
-          this.addPredefinedTag(tag);
-      }
-      tagInput.value = '';
-  }
+        if (tagInput.value === '') {
+            this.removeTag(this.tags[this.tags.length - 1]);
+        }
+    }
 
-  private addPredefinedTag(tag: Object): void {
-      if (!this.maximumOfTagsReached()){
-          this.tags.push(tag);
-          this.tagsChanged('add', tag);
-      }
-  }
+    addTag(tagInput: HTMLInputElement): void {
+        if (tagInput.value.trim() !== '') {
+            let tag = {
+                [this.displayField]: tagInput.value
+            };
+            this.addPredefinedTag(tag);
+        }
+        tagInput.value = '';
+    }
 
-  removeTag(tagToRemove: any): void {
-      if(!this.isDeleteable(tagToRemove)){
-          return;
-      }
-      this.tags = this.tags.filter(tag => tagToRemove !== tag);
-      this.tagsChanged('remove', tagToRemove);
-  }
+    private addPredefinedTag(tag: Object): void {
+        if (!this.maximumOfTagsReached()) {
+            this.tags.push(tag);
+            this.tagsChanged('add', tag);
+        }
+    }
 
-  maximumOfTagsReached(): boolean {
-      return typeof this.maxTags !== 'undefined' && this.tags && this.tags.length>=this.maxTags;
-  }
+    removeTag(tagToRemove: any): void {
+        if (!this.isDeleteable(tagToRemove)) {
+            return;
+        }
+        this.tags = this.tags.filter(tag => tagToRemove !== tag);
+        this.tagsChanged('remove', tagToRemove);
+    }
 
-  isDeleteable(tag: any) {
-      if(typeof tag.deleteable !== "undefined" && !tag.deleteable){
-          return false;
-      }
-      return this.canDeleteTags;
-  }
+    maximumOfTagsReached(): boolean {
+        return typeof this.maxTags !== 'undefined' && this.tags && this.tags.length >= this.maxTags;
+    }
 
-  typeaheadOnSelect(e:TypeaheadMatch):void {
-      if(typeof e.item === 'string'){
-          this.addPredefinedTag({
-              [this.displayField]: e.value
-          });
-      }else {
-          this.addPredefinedTag(e.item);
-      }
-      this.selected = '';
-  }
+    isDeleteable(tag: any) {
+        if (typeof tag.deleteable !== "undefined" && !tag.deleteable) {
+            return false;
+        }
+        return this.canDeleteTags;
+    }
 
-  typeaheadOnNoMatch(e:any):void {
-      if(typeof this.onNoOptionsMatch !== 'undefined'){
-          this.onNoOptionsMatch.emit(e)
-      }
-  }
+    typeaheadOnSelect(e: TypeaheadMatch): void {
+        if (typeof e.item === 'string') {
+            this.addPredefinedTag({
+                [this.displayField]: e.value
+            });
+        } else {
+            this.addPredefinedTag(e.item);
+        }
+        this.selected = '';
+    }
 
-  writeValue(value: any) {
-      if (value !== this.tags) {
-          this.tags = value;
-      }
-  }
+    typeaheadOnNoMatch(e: any): void {
+        if (typeof this.onNoOptionsMatch !== 'undefined') {
+            this.onNoOptionsMatch.emit(e)
+        }
+    }
 
-  registerOnChange(fn: any) {
-      this.onChangeCallback = fn;
-  }
+    writeValue(value: any) {
+        if (value !== this.tags) {
+            this.tags = value;
+        }
+    }
 
-  registerOnTouched(fn: any) {
-      this.onTouchedCallback = fn;
-  }
+    registerOnChange(fn: any) {
+        this.onChangeCallback = fn;
+    }
+
+    registerOnTouched(fn: any) {
+        this.onTouchedCallback = fn;
+    }
 }
